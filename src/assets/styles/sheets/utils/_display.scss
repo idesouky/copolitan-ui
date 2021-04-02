@@ -1,0 +1,8 @@
+@mixin generate-display-classes {
+  @each $layout, $value in $display-layouts {
+    .#{$layout} {
+      display: $value;
+    }
+  }
+}
+@include generate-display-classes();

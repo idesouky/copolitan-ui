@@ -1,0 +1,33 @@
+@mixin generate-backgrounds-variants {
+  @each $bg-name, $colors in $theme-colors {
+    .bg-#{$bg-name} {
+      background-color: $colors;
+    }
+
+    @each $breakpoint-name, $width in ($breakpoints) {
+      @include media($breakpoint-name) {
+        .#{$breakpoint-name}\:bg-#{$bg-name} {
+          background-color: $colors;
+        }
+      }
+    }
+  }
+
+  @each $bg-name, $colors in $colors {
+    @each $type, $color in $colors {
+      .bg-#{$bg-name}-#{$type} {
+        background-color: $color;
+      }
+
+      @each $breakpoint-name, $width in ($breakpoints) {
+        @include media($breakpoint-name) {
+          .#{$breakpoint-name}\:bg-#{$bg-name}-#{$type} {
+            background-color: $color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include generate-backgrounds-variants();

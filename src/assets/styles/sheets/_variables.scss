@@ -1,0 +1,319 @@
+//  Color System
+
+$white: #fff !default;
+
+$whites: () !default;
+$whites: map-merge(
+  (
+    "900": $white
+  ),
+  $whites
+);
+
+$secondary: #e3e3e3 !default;
+$secondary-100: #fcfcfc !default;
+$secondary-250: #f8f8f8 !default;
+$secondary-500: #f1f1f1 !default;
+$secondary-750: #eaeaea !default;
+
+$secondarys: () !default;
+$secondarys: map-merge(
+  (
+    "100": $secondary-100,
+    "250": $secondary-250,
+    "500": $secondary-500,
+    "750": $secondary-750,
+    "900": $secondary
+  ),
+  $secondarys
+);
+$black: #000 !default;
+$black-750: #404040 !default;
+$black-500: #808080 !default;
+$black-250: #bfbfbf !default;
+$black-100: #e6e6e6 !default;
+
+$blacks: () !default;
+$blacks: map-merge(
+  (
+    "100": $black-100,
+    "250": $black-250,
+    "500": $black-500,
+    "750": $black-750,
+    "900": $black
+  ),
+  $blacks
+);
+
+$blue: #0b00ac !default;
+$blue-750: #4740c0 !default;
+$blue-500: #847fd5 !default;
+$blue-250: #c1bfea !default;
+$blue-100: #e6e5f7 !default;
+
+$blues: () !default;
+$blues: map-merge(
+  (
+    "100": $blue-100,
+    "250": $blue-250,
+    "500": $blue-500,
+    "750": $blue-750,
+    "900": $blue
+  ),
+  $blues
+);
+
+$yellow: #f5aa3c;
+$yellow-750: #f7bf6d !default;
+$yellow-500: #fad49d !default;
+$yellow-250: #fdeace !default;
+$yellow-100: #fef6eb !default;
+
+$yellows: () !default;
+$yellows: map-merge(
+  (
+    "100": $yellow-100,
+    "250": $yellow-250,
+    "500": $yellow-500,
+    "750": $yellow-750,
+    "900": $yellow
+  ),
+  $yellows
+);
+
+$orange: #f33901;
+$orange-750: #f66a40 !default;
+$orange-500: #f99b7f !default;
+$orange-250: #fccdbf !default;
+$orange-100: #feebe5 !default;
+
+$oranges: () !default;
+$oranges: map-merge(
+  (
+    "100": $orange-100,
+    "250": $orange-250,
+    "500": $orange-500,
+    "750": $orange-750,
+    "900": $orange
+  ),
+  $oranges
+);
+
+$green: #62c375;
+$green-750: #89d297 !default;
+$green-500: #b0e1b9 !default;
+$green-250: #d7f0dc !default;
+$green-100: #eff9f1 !default;
+
+$greens: () !default;
+$greens: map-merge(
+  (
+    "100": $green-100,
+    "250": $green-250,
+    "500": $green-500,
+    "750": $green-750,
+    "900": $green
+  ),
+  $greens
+);
+
+$cyan: #6edbd5;
+$cyan-750: #92e4df !default;
+$cyan-500: #b6edea !default;
+$cyan-250: #daf6f5 !default;
+$cyan-100: #f0fcfb !default;
+
+$cyans: () !default;
+$cyans: map-merge(
+  (
+    "100": $cyan-100,
+    "250": $cyan-250,
+    "500": $cyan-500,
+    "750": $cyan-750,
+    "900": $cyan
+  ),
+  $cyans
+);
+
+$red: #cc3524;
+$red-750: #d9675b !default;
+$red-500: #e59991 !default;
+$red-250: #f2ccc8 !default;
+$red-100: #faeae8 !default;
+
+$reds: () !default;
+$reds: map-merge(
+  (
+    "100": $red-100,
+    "250": $red-250,
+    "500": $red-500,
+    "750": $red-750,
+    "900": $red
+  ),
+  $reds
+);
+$offwhite: #f5f8fa;
+$offwhite-750: #f7fafb !default;
+$offwhite-500: #fafbfc !default;
+$offwhite-250: #fdfdfe !default;
+$offwhite-100: #feffff !default;
+
+$offwhites: () !default;
+$offwhites: map-merge(
+  (
+    "100": $offwhite-100,
+    "250": $offwhite-250,
+    "500": $offwhite-500,
+    "750": $offwhite-750,
+    "900": $offwhite
+  ),
+  $offwhites
+);
+$colors: () !default;
+$colors: map-merge(
+  (
+    "blue": $blues,
+    "red": $reds,
+    "orange": $oranges,
+    "yellow": $yellows,
+    "green": $greens,
+    "cyan": $cyans,
+    "white": $whites,
+    "gray": $secondarys,
+    "black": $blacks,
+    "offwhite": $offwhites
+  ),
+  $colors
+);
+
+// Buttons Colors
+$colors-w-fg: () !default;
+$colors-w-fg: map-merge(
+  (
+    "blue": (
+      bg: $blue,
+      fg: $white
+    ),
+    "red": (
+      bg: $red,
+      fg: $white
+    ),
+    "orange": (
+      bg: $orange,
+      fg: $white
+    ),
+    "yellow": (
+      bg: $yellow,
+      fg: $white
+    ),
+    "green": (
+      bg: $green,
+      fg: $white
+    ),
+    "cyan": (
+      bg: $cyan,
+      fg: $black
+    ),
+    "white": (
+      bg: $white,
+      fg: $black
+    ),
+    "gray": (
+      bg: $secondary,
+      fg: $black
+    ),
+    "black": (
+      bg: $black,
+      fg: $white
+    ),
+    "offwhite": (
+      bg: $offwhite,
+      fg: $black
+    )
+  ),
+  $colors-w-fg
+);
+
+// Named Colors
+$primary: $blue !default;
+$secondary: $secondary !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $white !default;
+$dark: $black !default;
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark
+  ),
+  $theme-colors
+);
+
+// Breakpoints
+$breakpoints: (
+  "sm": 640px,
+  "md": 768px,
+  "lg": 1024px,
+  "xl": 1280px,
+  "xxl": 1536px
+) !default;
+
+// Box Styles
+$box-styles: (border, content) !default;
+
+// Display Properties
+$display-layouts: (
+  "grid": grid,
+  "flex": flex,
+  "hidden": none,
+  "block": block
+) !default;
+
+// Viewport sides & sizes
+$sides: (
+  "t": top,
+  "b": bottom,
+  "r": right,
+  "l": left
+) !default;
+$sides-combined: (
+  "x": horizontal,
+  "y": vertical
+) !default;
+$sizes: (
+  "w": width,
+  "h": height
+) !default;
+
+// Spacing
+
+$spaces: (
+  "p": padding,
+  "m": margin
+) !default;
+
+// Grid
+$columns: 12;
+
+// Font Family
+$font-families: (Poppins, BebasNeue);
+:root {
+  @each $color, $value in $theme-colors {
+    --#{$color}: #{$value} !important;
+  }
+  @each $name, $color-group in $colors {
+    @each $color, $value in $color-group {
+      --#{$name}-#{$color}: #{$value} !important;
+    }
+  }
+}

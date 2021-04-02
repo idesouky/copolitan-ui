@@ -1,0 +1,21 @@
+@mixin generate-font-faces {
+}
+
+@mixin generate-font-family {
+  @each $font-family in $font-families {
+    .font-#{$font-family} {
+      font-family: $font-family;
+    }
+  }
+
+  @each $brk, $width in $breakpoints {
+    @each $font in $font-families {
+      .#{$brk}\:font-#{$font} {
+        font-family: $font;
+      }
+    }
+  }
+}
+
+@include generate-font-faces();
+@include generate-font-family();

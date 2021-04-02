@@ -1,0 +1,27 @@
+$max-border-radius: 2rem;
+$default: 0.25rem;
+$initial: 0.25rem;
+$step: 0.125rem;
+$max-steps: length($breakpoints);
+@function calc-border-radius($index) {
+  @return $initial + (($index - 1) * $step);
+}
+
+@mixin generate-position-border-radius {
+  $rev-breakpoints: ($breakpoints);
+  @for $var from 1 through $max-steps {
+    $brk: nth(
+      $list: $rev-breakpoints,
+      $n: $var
+    );
+    $name: nth(
+      $list: $brk,
+      $n: 1
+    );
+    .rounded-#{$name} {
+      border-radius: calc-border-radius($var);
+    }
+  }
+}
+
+@include generate-position-border-radius();

@@ -1,0 +1,16 @@
+@mixin generate-box-sizing {
+  @each $box-style in $box-styles {
+    .box-#{$box-style} {
+      box-sizing: unquote($string: $box-style) + "-box";
+    }
+    @each $brk, $width in map-reverse($breakpoints) {
+      @include media($brk) {
+        .#{$brk}\:box-#{$box-style} {
+          box-sizing: unquote($string: $box-style) + "-box";
+        }
+      }
+    }
+  }
+}
+
+@include generate-box-sizing();

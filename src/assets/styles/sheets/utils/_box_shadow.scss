@@ -1,0 +1,43 @@
+$max-shadow: 24rem;
+$init-blur: 0.5rem;
+$init-space: 0.1rem;
+$init-alpha: 0.3;
+// 0 0 0.5rem 0.1rem var(--dark)
+@mixin generate-box-shadows {
+  @each $name, $colors_ in $colors {
+    $color: map-get(
+      $map: $colors_,
+      $key: "900"
+    );
+    .shadow-#{$name} {
+      box-shadow: 0 0 0.5rem 0.1rem rgba($color: $color, $alpha: 0.5);
+    }
+  }
+}
+
+@mixin generate-different-box-shadows {
+  $index: 0rem;
+  $alpha: 0;
+  @each $brk, $value in $breakpoints {
+    .shadow-#{$brk} {
+      box-shadow: 0
+        0
+        ($init-blur + $index)
+        ($init-space + $index)
+        rgba($color: #000, $alpha: $init-alpha + $alpha);
+    }
+    .inner-shadow-#{$brk} {
+      box-shadow: inset
+        0
+        0
+        ($init-blur + $index)
+        ($init-space + $index)
+        rgba($color: #000, $alpha: $init-alpha + $alpha);
+    }
+    $index: $index + 0.2rem;
+    $alpha: $alpha - 0.1;
+  }
+}
+
+@include generate-box-shadows();
+@include generate-different-box-shadows();

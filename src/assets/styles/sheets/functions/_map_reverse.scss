@@ -1,0 +1,10 @@
+@function map-reverse($xs) {
+  $length: length(
+    $list: $xs
+  );
+  $collector: ();
+  @for $i from $length through 1 {
+    $collector: append($collector, nth($xs, $i));
+  }
+  @return $collector;
+}

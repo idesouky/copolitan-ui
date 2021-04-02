@@ -1,0 +1,56 @@
+$fragments: 12;
+$max: 24rem;
+$max-variant: 100;
+
+@function calc-width($var) {
+  @return $var / $max-variant * $max;
+}
+@function calc-width-percent($var) {
+  @return $var / $fragments * 100%;
+}
+
+@mixin generate-width-utilities {
+  @each $name, $property in $sizes {
+    .#{$name}-auto {
+      #{$property}: auto;
+    }
+    .#{$name}-max {
+      #{$property}: max-content;
+    }
+    .#{$name}-min {
+      #{$property}: min-content;
+    }
+    .#{$name}-screen {
+      #{$property}: 100 * 1v +#{$name};
+    }
+    @for $var from $max-variant through 1 {
+      @each $breakpoint-name, $width in map-reverse($breakpoints) {
+        @include media($breakpoint-name) {
+          .#{$breakpoint-name}\:w-#{$var} {
+            width: calc-width($var);
+          }
+        }
+      }
+      .#{$name}-#{$var} {
+        #{$property}: calc-width($var);
+      }
+    }
+    @for $var from $fragments through 1 {
+      $value: round(
+        $number: calc-width-percent($var) / 1%
+      );
+      @each $breakpoint-name, $width in map-reverse($breakpoints) {
+        @include media($breakpoint-name) {
+          .#{$breakpoint-name}\:#{$name}-p-#{$value} {
+            #{$property}: $value * 1%;
+          }
+        }
+      }
+      .#{$name}-p-#{$value} {
+        #{$property}: $value * 1%;
+      }
+    }
+  }
+}
+
+@include generate-width-utilities();

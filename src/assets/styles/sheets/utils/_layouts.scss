@@ -1,0 +1,62 @@
+@mixin generate-containers {
+  .container {
+    @extend .px-6, .mx-auto;
+    width: 100%;
+  }
+  @each $brk, $value in ($breakpoints) {
+    @include media($brk) {
+      .container {
+        max-width: $value;
+      }
+    }
+  }
+}
+
+@mixin generate-columns-layout {
+  .col-common {
+    @extend .w-p-100, .pl-4, .pr-4;
+    position: relative;
+  }
+  .row {
+    @extend .flex, .flex-wrap, .-mx-4;
+  }
+  .col {
+    @extend .col-common;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    min-width: 0;
+    max-width: 100%;
+  }
+  @for $var from $columns through 1 {
+    .col-#{$var} {
+      @extend .col-common;
+      @extend .flex-#{$var};
+      // max-width: calc-width($var);
+    }
+  }
+
+  @each $brk, $width in ($breakpoints) {
+    @include media($brk) {
+      @for $var from $columns through 1 {
+        .#{$brk}\:col-#{$var} {
+          @extend .#{$brk}\:col-#{$var};
+          max-width: calc-width($var);
+        }
+      }
+    }
+  }
+  // @each $brk, $width in $breakpoints {
+  //   @for $var from $columns through 1 {
+  //     @include media($brk) {
+  //       .#{$brk}\:col-#{$var} {
+  //         @extend .#{$brk}\:flex-#{$var};
+  //         max-width: calc-width($var);
+  //       }
+  //     }
+  //   }
+  // }
+}
+
+@include generate-containers();
+@include generate-columns-layout();

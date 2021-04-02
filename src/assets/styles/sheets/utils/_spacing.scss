@@ -1,0 +1,78 @@
+$max-spacing-size: 24rem;
+$spacing-variants: 100;
+
+@function calculate-spacing($variant) {
+  @return $variant / $spacing-variants * $max-spacing-size;
+}
+
+@mixin generate-spacing-classes {
+  @each $name, $property in $spaces {
+    @for $var from 0 through $spacing-variants {
+      .#{$name}-#{$var} {
+        #{$property}: calculate-spacing($var);
+      }
+      @each $side-name, $side-property-name in $sides {
+        .#{$name}#{$side-name}-#{$var} {
+          #{$property}-#{$side-property-name}: calculate-spacing($var);
+        }
+      }
+
+      @each $side, $value in $sides-combined {
+        @if $value == horizontal {
+          .#{$name}#{$side}-#{$var} {
+            @extend .#{$name}r-#{$var}, .#{$name}l-#{$var};
+          }
+        }
+        @if $value == vertical {
+          .#{$name}#{$side}-#{$var} {
+            @extend .#{$name}b-#{$var}, .#{$name}t-#{$var};
+          }
+        }
+      }
+      @each $brk, $width in map-reverse($breakpoints) {
+        @include media($brk) {
+          .#{$brk}\:#{$name}-#{$var} {
+            #{$property}: calculate-spacing($var);
+          }
+          @each $side-name, $side-property-name in $sides {
+            .#{$brk}\:#{$name}#{$side-name}-#{$var} {
+              #{$property}-#{$side-property-name}: calculate-spacing($var);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin generate-extra-margin-classes {
+  .mx-auto {
+    margin: 0 auto;
+  }
+  @for $var from $spacing-variants * -1 through 1 {
+    .-m#{$var} {
+      margin: calculate-spacing($var);
+    }
+    @each $side-name, $side-property-name in $sides {
+      .-m#{$side-name}#{$var} {
+        margin-#{$side-property-name}: calculate-spacing($var);
+      }
+    }
+
+    @each $name, $value in $sides-combined {
+      @if $value == horizontal {
+        .-m#{$name}#{$var} {
+          @extend .-mr#{$var}, .-ml#{$var};
+        }
+      }
+      @if $value == vertical {
+        .-m#{$name}-#{$var} {
+          @extend .-mb#{$var}, .-mt#{$var};
+        }
+      }
+    }
+  }
+}
+
+@include generate-spacing-classes();
+@include generate-extra-margin-classes();

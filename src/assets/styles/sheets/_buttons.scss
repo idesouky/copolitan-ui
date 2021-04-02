@@ -1,0 +1,26 @@
+.reset-btn {
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  height: fit-content;
+}
+.btn {
+  @extend .reset-btn, .py-5, .px-10, .rounded-lg;
+  // border-radius: 0.5rem;
+  margin: 0.5em;
+  transition: all ease-in-out 0.2s;
+  // &:hover {
+  //   @extend .shadow-blue;
+  //   // box-shadow: 0 1rem 1rem 0.1rem var(--dark);
+  // }
+}
+
+@each $name, $colors in $colors-w-fg {
+  .btn-#{$name} {
+    @extend .btn, .bg-#{$name}-900;
+    color: map-get($map: $colors, $key: fg);
+    &:hover {
+      @extend .shadow-#{$name};
+    }
+  }
+}

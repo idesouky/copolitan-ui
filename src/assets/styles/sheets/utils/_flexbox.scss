@@ -1,0 +1,38 @@
+@mixin generate-flexbox {
+  .flex-auto {
+    flex: 1 1 auto;
+  }
+  .flex-none {
+    flex: none;
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .flex-wrap-reverse {
+    flex-wrap: wrap-reverse;
+  }
+  .flex-nowrap {
+    flex-wrap: nowrap;
+  }
+  @for $var from $columns through 1 {
+    .flex-#{$var} {
+      flex: 0 0 calc-width($var);
+    }
+  }
+  @each $brk, $width in ($breakpoints) {
+    @include media($brk) {
+      @for $var from $columns through 1 {
+        .#{$brk}\:flex-#{$var} {
+          flex: 0 0 calc-width($var);
+        }
+      }
+    }
+  }
+}
+
+@mixin generate-utilities-flexbox-classes {
+}
+
+@include generate-flexbox();
+@include generate-utilities-flexbox-classes();
