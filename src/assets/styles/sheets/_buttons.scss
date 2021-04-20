@@ -5,22 +5,32 @@
   height: fit-content;
 }
 .btn {
-  @extend .reset-btn, .py-5, .px-10, .rounded-lg;
-  // border-radius: 0.5rem;
+  @extend .reset-btn, .py-3, .px-20, .rounded-sm;
   margin: 0.5em;
   transition: all ease-in-out 0.2s;
-  // &:hover {
-  //   @extend .shadow-blue;
-  //   // box-shadow: 0 1rem 1rem 0.1rem var(--dark);
-  // }
 }
 
 @each $name, $colors in $colors-w-fg {
   .btn-#{$name} {
-    @extend .btn, .bg-#{$name}-900;
+    @extend .btn, .bg-#{$name}-900, .shadow-#{$name};
     color: map-get($map: $colors, $key: fg);
-    &:hover {
-      @extend .shadow-#{$name};
+  }
+}
+
+@each $brk, $width in $breakpoints {
+  @if $brk == "sm" {
+    .btn-#{$brk} {
+      @extend .btn;
+    }
+  }
+  @if $brk == "md" {
+    .btn-#{$brk} {
+      @extend .btn, .px-21, .py-4, .rounded-#{$brk};
+    }
+  }
+  @if $brk == "lg" {
+    .btn-#{$brk} {
+      @extend .btn, .px-21, .py-5, .rounded-#{$brk};
     }
   }
 }
