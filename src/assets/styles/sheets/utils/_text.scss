@@ -1,0 +1,33 @@
+@mixin generate-text-colors-variants {
+  @each $bg-name, $colors in $theme-colors {
+    .text-#{$bg-name} {
+      color: $colors;
+    }
+
+    @each $breakpoint-name, $width in ($breakpoints) {
+      @include media($breakpoint-name) {
+        .#{$breakpoint-name}\:text-#{$bg-name} {
+          color: $colors;
+        }
+      }
+    }
+  }
+
+  @each $bg-name, $colors in $colors {
+    @each $type, $color in $colors {
+      .text-#{$bg-name}-#{$type} {
+        color: $color;
+      }
+
+      @each $breakpoint-name, $width in ($breakpoints) {
+        @include media($breakpoint-name) {
+          .#{$breakpoint-name}\:text-#{$bg-name}-#{$type} {
+            color: $color;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include generate-text-colors-variants();
